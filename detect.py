@@ -22,6 +22,7 @@ if __name__ == "__main__":
  
     parser = argparse.ArgumentParser("EdgeTPU test runner")
     parser.add_argument("--model", "-m", help="weights file", required=True)
+    parser.add_argument("--desktop", "-d", help="use desktop instead of edge tpu")
     parser.add_argument("--bench_speed", action='store_true', help="run speed test on dummy data")
     parser.add_argument("--bench_image", action='store_true', help="run detection test")
     parser.add_argument("--conf_thresh", type=float, default=0.25, help="model confidence threshold")
