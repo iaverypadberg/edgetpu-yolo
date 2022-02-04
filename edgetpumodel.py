@@ -18,15 +18,16 @@ logger = logging.getLogger("EdgeTPUModel")
 
 class EdgeTPUModel:
 
-    def __init__(self, model_file, names_file, conf_thresh=0.25, iou_thresh=0.45, filter_classes=None, agnostic_nms=False, max_det=1000):
+    def __init__(self, model_file, names_file, conf_thresh=0.25, iou_thresh=0.45, desktop=False, filter_classes=None, agnostic_nms=False, max_det=1000):
         """
-        Creates an object for running a Yolov5 model on an EdgeTPU
+        Creates an object for running a Yolov5 model on an EdgeTPU or a Desktop
         
         Inputs:
           - model_file: path to edgetpu-compiled tflite file
           - names_file: yaml names file (yolov5 format)
           - conf_thresh: detection threshold
           - iou_thresh: NMS threshold
+          - desktop: option to run model on a desktop
           - filter_classes: only output certain classes
           - agnostic_nms: use class-agnostic NMS
           - max_det: max number of detections
@@ -40,6 +41,7 @@ class EdgeTPUModel:
         self.model_file = model_file
         self.conf_thresh = conf_thresh
         self.iou_thresh = iou_thresh
+        self.desktop = desktop
         self.filter_classes = filter_classes
         self.agnostic_nms = agnostic_nms
         self.max_det = 1000
@@ -78,6 +80,7 @@ class EdgeTPUModel:
         the interpreter that deals with the EdgetPU hardware.
         """
         # Load the model and allocate
+        if
         self.interpreter = etpu.make_interpreter(self.model_file)
         self.interpreter.allocate_tensors()
     
