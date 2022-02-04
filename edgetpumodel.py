@@ -10,7 +10,7 @@ from pycoral.adapters import common
 from nms import non_max_suppression
 import cv2
 import json
-
+import tflite_runtime.interpreter as tflite
 from utils import plot_one_box, Colors, get_image_tensor
 
 logging.basicConfig(level=logging.INFO)
@@ -77,11 +77,14 @@ class EdgeTPUModel:
     def make_interpreter(self):
         """
         Internal function that loads the tflite file and creates
-        the interpreter that deals with the EdgetPU hardware.
+        the interpreter that deals with the EdgeTPU hardware.
         """
         # Load the model and allocate
-        if
-        self.interpreter = etpu.make_interpreter(self.model_file)
+        # Choose desktop or EdgTPU
+        if self.desktop:
+            self.interpreter = tflite.Interpreter(self.model_file)
+        else:
+            self.interpreter = etpu.make_interpreter(self.model_file)
         self.interpreter.allocate_tensors()
     
         self.input_details = self.interpreter.get_input_details()
