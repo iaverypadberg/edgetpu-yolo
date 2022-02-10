@@ -1,0 +1,13 @@
+{
+ "data/images/bottle256_detect": {
+  "box": [
+   76.0,
+   44.0,
+   129.0,
+   229.0
+  ],
+  "conf": 0.8591834902763367,
+  "cls": 39.0,
+  "cls_name": "bottle"
+ }
+}

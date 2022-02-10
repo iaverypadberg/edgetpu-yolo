@@ -130,6 +130,7 @@ class EdgeTPUModel:
     
         full_image, net_image, pad = get_image_tensor(image_path, self.input_size[0])
         pred = self.forward(net_image)
+        logger.info("Inference time: {}".format(self.inference_time))
         
         base, ext = os.path.splitext(image_path)
         
